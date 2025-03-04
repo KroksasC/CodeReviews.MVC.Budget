@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Budget app</title>
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body class="container">
+    <div class="primaryForm">
+        <h1>Budget app</h1>
+        <div>
+            <button id="add-transaction-btn" onclick="openTransactionInput()">Add transaction</button>
+            <button class="formsButtons" id="add-category-btn" onclick="openCategoryInput()">Add ategory</button>
+            <button class="formsButtons" id="show-categories-btn" onclick="openCategories()">Show categories</button>
+        </div>
+        <form id="add-transaction-form" style="display: none">
+            <h3>Add Transactions</h3>
+            <label>Enter amount: </label>
+            <input type="text" id="add-amount" placeholder="Enter amount.." />
+            <br><br>
+            <label>Enter description(optional)</label>
+            <input type="text" id="add-description" placeholder="Enter description(optional).." />
+            <br><br>
+            <label>Enter date and time of your transaction:</label>
+            <input type="datetime-local" id="add-date" />
+
+            <h4>Select category</h4>
+            <div id="category-options">
+
+            </div>
+
+            <button type="submit" onclick="addTransaction()">Add</button>
+            <button type="button" id="close-add-transaction-btn" onclick="closeTransactionInput()">Close</button>
+        </form>
+        <form id="add-category-form" style="display: none">
+            <h3>Add category</h3>
+            <label>Enter category name that you want to add</label>
+            <input type="text" id="add-category" placeholder="Enter category name.." />
+            <br />
+            <button type="submit" onclick="addCategory()">Add</button>
+            <button type="button" onclick="closeCategoryInput()" id="close-add-category-btn">Close</button>
+            <br />
+        </form>
+        <form id="edit-category-form" style="display: none">
+            <h3>Edit categories</h3>
+            <label>Enter new category name</label>
+            <input type="text" id="edit-categoryName" />
+            <button type="submit" id="save-category-btn">Save</button>
+            <button type="button" id="close-categories-edit-form-btn" onclick="closeCategoriesEditForm()">Close</button>
+        </form>
+        <form id="show-categories-form" style="display: none">
+            <table class="categoriesTable">
+                <thead>
+                    <tr>
+                        <th>Category name</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="categories">
+                </tbody>
+            </table>
+            <button type="button" id="close-categories-btn" onclick="closeCategories()">Close</button>
+        </form>
+        <form id="edit-transaction-form" style="display:none">
+            <h3>Edit transaction</h3>
+            <label>Enter new amount</label>
+            <input type="text" id="edit-amount" />
+            <br />
+            <label>Enter new description</label>
+            <input type="text" id="edit-description" />
+            <br />
+            <label>Enter new date and time</label>
+            <input type="datetime-local" id="edit-date" />
+            <div id="category-edit-transactions">
+
+            </div>
+            <button type="submit" id="save-transaction-btn">Save</button>
+            <button type="button" id="close-transaction-edit-form-btn" onclick="closeTransactionEditForm()">Close</button>
+
+        </form>
+        <div class="filter-container">
+            <input type="text" id="search-description" placeholder="Search by description" oninput="filterTransactions()">
+            <br />
+            <label >Search by category:</label>
+            <select id="filter-category" onchange="filterTransactions()">
+                <option value="">All Categories</option>
+            </select>
+            <br />
+            <label for="filter-date">Search by date:</label>
+            <input type="date" id="filter-date" onchange="filterTransactions()">
+        </div>
+        <h2>Transactions</h2>
+        <table class="transactionTable">
+            <tr>
+                <th>Transaction Amount</th>
+                <th>Date of transaction</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Edit/Delete</th>
+            </tr>
+            <tbody id="transactions">
+            </tbody>
+        </table>
+    </div>
+    <script src="js/Category.js"></script>
+    <script src="js/Transaction.js"></script>
+</body>
+</html>
